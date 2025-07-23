@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: chronicler-of-the-nile
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python src/main.py
+    envVars:
+      - key: WHATSAPP_ACCESS_TOKEN
+        value: EAASL2WJPBOkBPIzZAtmprKTLsnuJHNQfkDZCCuh0ET5ZAWrdmcA4FnZCnZBz83mgLBdXGF8WO4dSNZAntZCJqvKI6FxlM2ZAeHLVwn7uVqUa0yyvxRUXYGjFLBXM9DgL76KUj0B385xkYIsZAwiqHZBT45g9MS0ZBIA6ufj7VCF7qyvz3snhrTrehoRuYmf53qBeZAppn3fabh0F9lIEHX5CcDKtrWFoTTkR0hShJyKAZCWx2WGLWuQZDZD
+      - key: WHATSAPP_PHONE_NUMBER_ID
+        value: 1447541029595456
+      - key: WHATSAPP_VERIFY_TOKEN
+        value: rahmaebrahimZC4
+      - key: WHATSAPP_APP_SECRET
+        value: 7150ab0f55956fd0aef724b4a5156702
+      - key: GEMINI_API_KEY
+        value: AIzaSyAbjL2VSli0gh_uKTU3-RKfpxZH5Qj14Lg
+      - key: SECRET_KEY
+        value: 0e3f8fb82ce1ddb4b2798d7e75c408a4817ef6065e6fbca6ca9047fab89d2f2d
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: False
+      - key: DATABASE_URL
+        value: sqlite:///app.db
+      - key: CORS_ORIGINS
+        value: "*"
+

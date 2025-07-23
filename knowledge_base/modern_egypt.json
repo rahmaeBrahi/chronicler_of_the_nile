@@ -1,0 +1,401 @@
+{
+  "period": "Modern Egypt",
+  "timeframe": "1805 - Present",
+  "overview": "Modern Egypt begins with Muhammad Ali Pasha's rise to power in 1805, marking the start of Egypt's modernization. This period includes the Muhammad Ali dynasty, British occupation, independence, revolution, and the contemporary era.",
+  "muhammad_ali_dynasty": {
+    "period": "1805-1952",
+    "founder": "Muhammad Ali Pasha",
+    "overview": "Albanian-Ottoman officer who modernized Egypt and established hereditary rule",
+    "rulers": [
+      {
+        "name": "Muhammad Ali Pasha",
+        "reign": "1805-1848",
+        "title": "Father of Modern Egypt",
+        "achievements": [
+          "Modernized military with European advisors",
+          "Established modern education system",
+          "Industrialization programs",
+          "Agricultural reforms",
+          "Built modern irrigation systems",
+          "Conquered Sudan (1820-1821)"
+        ],
+        "reforms": [
+          "Land tenure system changes",
+          "State monopolies on trade",
+          "Modern medical school",
+          "Printing press introduction",
+          "European-style army"
+        ]
+      },
+      {
+        "name": "Ismail Pasha",
+        "reign": "1863-1879",
+        "title": "Khedive of Egypt",
+        "achievements": [
+          "Suez Canal opening (1869)",
+          "Urban modernization of Cairo",
+          "Expansion of education",
+          "Infrastructure development",
+          "Territorial expansion in Africa"
+        ],
+        "challenges": [
+          "Massive foreign debt",
+          "European financial control",
+          "Forced abdication by European powers"
+        ]
+      }
+    ],
+    "suez_canal": {
+      "construction": "1859-1869",
+      "engineer": "Ferdinand de Lesseps",
+      "impact": [
+        "Connected Mediterranean and Red Sea",
+        "Shortened trade route to Asia",
+        "Increased European interest in Egypt",
+        "Source of revenue and conflict"
+      ]
+    }
+  },
+  "british_occupation": {
+    "period": "1882-1952",
+    "beginning": "British military intervention (1882)",
+    "context": "Urabi Revolt and European financial interests",
+    "key_events": [
+      "Battle of Tel el-Kebir (1882)",
+      "Establishment of British protectorate",
+      "Lord Cromer's administration",
+      "Dinshaway Incident (1906)",
+      "1919 Revolution",
+      "Independence declaration (1922)",
+      "Anglo-Egyptian Treaty (1936)"
+    ],
+    "administration": [
+      "Dual control system",
+      "British advisors in government",
+      "Economic exploitation",
+      "Infrastructure development",
+      "Educational expansion"
+    ],
+    "resistance": {
+      "urabi_revolt": {
+        "date": "1879-1882",
+        "leader": "Ahmed Urabi",
+        "causes": [
+          "Foreign financial control",
+          "Military grievances",
+          "Nationalist sentiment"
+        ],
+        "outcome": "British occupation"
+      },
+      "1919_revolution": {
+        "date": "1919",
+        "leader": "Saad Zaghloul",
+        "causes": [
+          "Post-WWI nationalism",
+          "Demand for independence",
+          "Economic hardships"
+        ],
+        "outcome": "Limited independence (1922)"
+      }
+    }
+  },
+  "constitutional_monarchy": {
+    "period": "1922-1952",
+    "system": "Constitutional monarchy under British influence",
+    "key_figures": [
+      {
+        "name": "King Fuad I",
+        "reign": "1917-1936",
+        "achievements": [
+          "Oversaw independence negotiations",
+          "Established modern constitution",
+          "Founded modern university system"
+        ]
+      },
+      {
+        "name": "King Farouk",
+        "reign": "1936-1952",
+        "challenges": [
+          "World War II pressures",
+          "Political instability",
+          "Economic problems",
+          "Military coup (1952)"
+        ]
+      }
+    ],
+    "political_parties": [
+      "Wafd Party - nationalist party",
+      "Liberal Constitutional Party",
+      "National Party",
+      "Muslim Brotherhood (founded 1928)"
+    ],
+    "challenges": [
+      "Continued British influence",
+      "Political corruption",
+      "Economic inequality",
+      "Palestine War (1948-1949)"
+    ]
+  },
+  "1952_revolution": {
+    "date": "July 23, 1952",
+    "leaders": "Free Officers Movement",
+    "key_figures": [
+      "Gamal Abdel Nasser",
+      "Muhammad Naguib",
+      "Anwar Sadat",
+      "Abdel Hakim Amer"
+    ],
+    "causes": [
+      "Military defeat in Palestine",
+      "Political corruption",
+      "Social inequality",
+      "Continued foreign influence"
+    ],
+    "immediate_changes": [
+      "Abolition of monarchy",
+      "Land reforms",
+      "Nationalization programs",
+      "End of British influence"
+    ]
+  },
+  "nasser_era": {
+    "period": "1954-1970",
+    "leader": "Gamal Abdel Nasser",
+    "ideology": "Arab socialism and nationalism",
+    "major_policies": [
+      "Land redistribution",
+      "Nationalization of industries",
+      "Non-aligned foreign policy",
+      "Pan-Arab leadership",
+      "Social welfare programs"
+    ],
+    "key_events": [
+      {
+        "event": "Suez Crisis",
+        "date": "1956",
+        "details": [
+          "Nationalization of Suez Canal",
+          "British-French-Israeli invasion",
+          "International pressure for withdrawal",
+          "Nasser's prestige enhanced"
+        ]
+      },
+      {
+        "event": "United Arab Republic",
+        "date": "1958-1961",
+        "details": [
+          "Union with Syria",
+          "Pan-Arab experiment",
+          "Syrian withdrawal (1961)"
+        ]
+      },
+      {
+        "event": "Six-Day War",
+        "date": "1967",
+        "details": [
+          "Devastating defeat by Israel",
+          "Loss of Sinai Peninsula",
+          "Nasser's temporary resignation",
+          "Popular support for his return"
+        ]
+      },
+      {
+        "event": "Aswan High Dam",
+        "date": "1970 completion",
+        "details": [
+          "Soviet assistance after Western withdrawal",
+          "Controlled Nile flooding",
+          "Increased agricultural production",
+          "Hydroelectric power generation"
+        ]
+      }
+    ],
+    "legacy": [
+      "Arab nationalism inspiration",
+      "Social modernization",
+      "Non-aligned movement leadership",
+      "Infrastructure development"
+    ]
+  },
+  "sadat_era": {
+    "period": "1970-1981",
+    "leader": "Anwar Sadat",
+    "major_changes": [
+      "Shift from Soviet to American alliance",
+      "Economic liberalization (Infitah)",
+      "Peace with Israel",
+      "Islamic revival encouragement"
+    ],
+    "key_events": [
+      {
+        "event": "October War (Yom Kippur War)",
+        "date": "1973",
+        "details": [
+          "Surprise attack on Israel",
+          "Initial Egyptian success",
+          "Restoration of Egyptian pride",
+          "Led to peace negotiations"
+        ]
+      },
+      {
+        "event": "Camp David Accords",
+        "date": "1978",
+        "details": [
+          "Peace agreement with Israel",
+          "Return of Sinai Peninsula",
+          "Nobel Peace Prize for Sadat",
+          "Arab world isolation"
+        ]
+      },
+      {
+        "event": "Assassination",
+        "date": "October 6, 1981",
+        "details": [
+          "Killed by Islamic extremists",
+          "During military parade",
+          "Opposition to peace with Israel"
+        ]
+      }
+    ],
+    "economic_policies": [
+      "Open Door Policy (Infitah)",
+      "Foreign investment encouragement",
+      "Reduced state control",
+      "Tourism development"
+    ]
+  },
+  "mubarak_era": {
+    "period": "1981-2011",
+    "leader": "Hosni Mubarak",
+    "characteristics": [
+      "Authoritarian stability",
+      "Economic gradual reform",
+      "Pro-Western foreign policy",
+      "Suppression of opposition"
+    ],
+    "achievements": [
+      "Political stability",
+      "Infrastructure development",
+      "Tourism growth",
+      "Regional diplomatic role"
+    ],
+    "challenges": [
+      "Economic inequality",
+      "Corruption",
+      "Political repression",
+      "Islamic extremism",
+      "Population growth"
+    ],
+    "major_events": [
+      "Gulf War participation (1991)",
+      "Luxor massacre (1997)",
+      "Economic reform programs",
+      "Emergency law continuation"
+    ]
+  },
+  "arab_spring": {
+    "period": "2011-present",
+    "beginning": "January 25, 2011 Revolution",
+    "causes": [
+      "Economic hardship",
+      "Political repression",
+      "Corruption",
+      "Youth unemployment",
+      "Social media mobilization"
+    ],
+    "timeline": [
+      {
+        "event": "January 25 Revolution",
+        "date": "2011",
+        "outcome": "Mubarak's resignation (February 11, 2011)"
+      },
+      {
+        "event": "Military transitional rule",
+        "date": "2011-2012",
+        "characteristics": "SCAF (Supreme Council of Armed Forces) rule"
+      },
+      {
+        "event": "Mohamed Morsi presidency",
+        "date": "2012-2013",
+        "characteristics": "First democratically elected president, Muslim Brotherhood"
+      },
+      {
+        "event": "July 3, 2013 coup",
+        "date": "2013",
+        "outcome": "Military removes Morsi, Abdel Fattah el-Sisi takes power"
+      }
+    ]
+  },
+  "contemporary_egypt": {
+    "period": "2014-present",
+    "leader": "Abdel Fattah el-Sisi",
+    "policies": [
+      "Infrastructure mega-projects",
+      "Economic reforms",
+      "Security focus",
+      "Regional diplomacy"
+    ],
+    "major_projects": [
+      "New Administrative Capital",
+      "Suez Canal expansion",
+      "New cities development",
+      "Renewable energy projects"
+    ],
+    "challenges": [
+      "Economic difficulties",
+      "Population growth",
+      "Water scarcity",
+      "Regional instability",
+      "Human rights concerns"
+    ]
+  },
+  "society_and_culture": {
+    "population": "Over 100 million (2020s)",
+    "religion": [
+      "Islam (majority - about 90%)",
+      "Coptic Christianity (about 10%)",
+      "Other minorities"
+    ],
+    "languages": [
+      "Arabic (official)",
+      "Egyptian Arabic (dialect)",
+      "English and French (educated classes)"
+    ],
+    "education": [
+      "Al-Azhar University (Islamic studies)",
+      "Cairo University (modern education)",
+      "American University in Cairo",
+      "Expanding higher education system"
+    ],
+    "arts_and_literature": [
+      "Arabic literature renaissance",
+      "Cinema industry (Hollywood of Middle East)",
+      "Music and performing arts",
+      "Nobel Prize winners (Naguib Mahfouz)"
+    ]
+  },
+  "economy": {
+    "sectors": [
+      "Agriculture (Nile Delta and Valley)",
+      "Industry (textiles, food processing)",
+      "Services (tourism, Suez Canal)",
+      "Oil and natural gas",
+      "Remittances from expatriates"
+    ],
+    "challenges": [
+      "High unemployment",
+      "Inflation",
+      "Foreign debt",
+      "Income inequality",
+      "Subsidy burden"
+    ],
+    "opportunities": [
+      "Strategic location",
+      "Large domestic market",
+      "Natural resources",
+      "Tourism potential",
+      "Renewable energy"
+    ]
+  }
+}
+

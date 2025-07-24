@@ -7,37 +7,18 @@ from src.models.conversation import db, Conversation, ConversationHistory
 from src.utils.wikipedia_search import wikipedia_searcher
 import json
 
-chat_bp = Blueprint('chat', __name__)
+chat_bp = Blueprint("chat", __name__)
 
 # Configure Gemini API
-print(f"🔑 GEMINI_API_KEY from environment variables: {os.getenv('GEMINI_API_KEY')[:10] if os.getenv('GEMINI_API_KEY') else 'Not found'}...")
-genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+print(f"🔑 GEMINI_API_KEY from environment variables: {os.getenv("GEMINI_API_KEY")[:10] if os.getenv("GEMINI_API_KEY") else "Not found"}...")
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Store conversation histories in memory (in production, use Redis or database)
 conversation_sessions = {}
 
 def get_chronicler_prompt():
     """Get the base prompt for the Chronicler of the Nile"""
-    return """You are "The Chronicler of the Nile," a sophisticated AI embodying the vast knowledge of Egyptian history spanning millennia. You are an authoritative, knowledgeable, and objective historical expert who can discuss any period of Egyptian history with depth and nuance.
-
-Your knowledge encompasses:
-- Ancient Egypt: Pharaohs, gods, monuments, daily life, dynasties
-- Graeco-Roman Egypt: Ptolemaic dynasty, Roman rule, early Christianity
-- Islamic Egypt: Arab conquest, Fatimid, Ayyubid, Mamluk periods
-- Ottoman Egypt: Ottoman rule, cultural developments
-- Modern Egypt: Muhammad Ali dynasty, British occupation, 1952 Revolution, Nasser, Sadat, Mubarak, and significant events
-
-Guidelines for your responses:
-1. Maintain an authoritative yet accessible tone - knowledgeable but not overly archaic
-2. Provide factual accuracy and balanced perspectives where historical debate exists
-3. Offer explanations of causes, effects, social impacts, and cultural significance
-4. Draw connections across different periods when relevant
-5. Use the conversation history to provide contextual understanding
-6. If uncertain about specific details, acknowledge limitations gracefully
-7. Avoid speculation about future events or current political opinions
-8. Structure responses clearly with paragraphs, bullet points, or headings as appropriate
-
-Respond in the same language as the user's query. If the user asks in Arabic, respond in Arabic. If in English, respond in English. Maintain this language consistency throughout the conversation unless explicitly asked to switch."""
+    return """You are "The Chronicler of the Nile," a sophisticated AI embodying the vast knowledge of Egyptian history spanning millennia. You are an authoritative, knowledgeable, and objective historical expert who can discuss any period of Egyptian history with depth and nuance.\n\nYour knowledge encompasses:\n- Ancient Egypt: Pharaohs, gods, monuments, daily life, dynasties\n- Graeco-Roman Egypt: Ptolemaic dynasty, Roman rule, early Christianity\n- Islamic Egypt: Arab conquest, Fatimid, Ayyubid, Mamluk periods\n- Ottoman Egypt: Ottoman rule, cultural developments\n- Modern Egypt: Muhammad Ali dynasty, British occupation, 1952 Revolution, Nasser, Sadat, Mubarak, and significant events\n\nGuidelines for your responses:\n1. Maintain an authoritative yet accessible tone - knowledgeable but not overly archaic\n2. Provide factual accuracy and balanced perspectives where historical debate exists\n3. Offer explanations of causes, effects, social impacts, and cultural significance\n4. Draw connections across different periods when relevant\n5. Use the conversation history to provide contextual understanding\n6. If uncertain about specific details, acknowledge limitations gracefully\n7. Avoid speculation about future events or current political opinions\n8. Structure responses clearly with paragraphs, bullet points, or headings as appropriate\n\nRespond in the same language as the user's query. If the user asks in Arabic, respond in Arabic. If in English, respond in English. Maintain this language consistency throughout the conversation unless explicitly asked to switch."""
 
 def detect_language(text):
     """Simple language detection - can be enhanced with proper language detection library"""
@@ -49,16 +30,7 @@ def detect_language(text):
 
 def get_chronicler_response(user_message, conversation, language):
     """
-    Generate a response from the Chronicler using Gemini AI with Wikipedia enhancement.
-    
-    Args:
-        user_message (str): User's message
-        conversation (ConversationHistory): Conversation history
-        language (str): Detected language
-        
-    Returns:
-        str: AI response
-    """
+    Generate a response from the Chronicler using Gemini AI with Wikipedia enhancement.\n    \n    Args:\n        user_message (str): User's message\n        conversation (ConversationHistory): Conversation history\n        language (str): Detected language\n        \n    Returns:\n        str: AI response\n    """
     print(f"🤖 Generating Chronicler response for: {user_message[:50]}...")
     
     # Get Wikipedia contextual information
@@ -131,24 +103,27 @@ def chat():
         # Get or create conversation history for this session
         if session_id not in conversation_sessions:
             conversation_sessions[session_id] = ConversationHistory()
+            print(f"5. New conversation session created for {session_id}")
+        else:
+            print(f"5. Existing conversation session found for {session_id}")
         
         conversation = conversation_sessions[session_id]
         
         # Add user message to history
         conversation.add_message('user', user_message)
-        print("5. Added user message to history")
+        print("6. Added user message to history")
         
         # Generate AI response with Wikipedia enhancement
-        print("6. Generating AI response with Wikipedia context...")
+        print("7. Generating AI response with Wikipedia context...")
         ai_response = get_chronicler_response(user_message, conversation, language)
-        print(f"7. AI response: {ai_response[:100]}...")
+        print(f"8. AI response: {ai_response[:100]}...")
         
         # Add AI response to history
         conversation.add_message('assistant', ai_response)
-        print("8. Added AI response to history")
+        print("9. Added AI response to history")
         
         # Save to database
-        print("9. Saving to database...")
+        print("10. Saving to database...")
         conv_record = Conversation(
             session_id=session_id,
             user_message=user_message,
@@ -157,7 +132,7 @@ def chat():
         )
         db.session.add(conv_record)
         db.session.commit()
-        print("10. Saved to database successfully")
+        print("11. Saved to database successfully")
         
         print("=== Chat request completed successfully ===")
         return jsonify({
@@ -168,7 +143,7 @@ def chat():
         })
         
     except Exception as e:
-        print(f"❌ Error occurred: {str(e)}")
+        print(f"❌ Error occurred in chat(): {str(e)}")
         print(f"❌ Error type: {type(e).__name__}")
         import traceback
         print(f"❌ Traceback: {traceback.format_exc()}")
@@ -176,6 +151,7 @@ def chat():
 
 @chat_bp.route('/history/<session_id>', methods=['GET'])
 def get_history(session_id):
+    print(f"=== Starting get_history request for session: {session_id} ===")
     try:
         conversations = Conversation.query.filter_by(session_id=session_id).order_by(Conversation.timestamp).all()
         history = []
@@ -187,26 +163,34 @@ def get_history(session_id):
                 'timestamp': conv.timestamp.isoformat(),
                 'language': conv.language
             })
-        
+        print(f"✅ Retrieved {len(history)} history records for session {session_id}")
         return jsonify({
             'session_id': session_id,
             'history': history
         })
         
     except Exception as e:
+        print(f"❌ Error occurred in get_history(): {str(e)}")
+        print(f"❌ Error type: {type(e).__name__}")
+        import traceback
+        print(f"❌ Traceback: {traceback.format_exc()}")
         return jsonify({'error': str(e)}), 500
 
 @chat_bp.route('/sessions', methods=['GET'])
 def get_sessions():
+    print("=== Starting get_sessions request ===")
     try:
         # Get unique session IDs from database
         sessions = db.session.query(Conversation.session_id).distinct().all()
         session_list = [session[0] for session in sessions]
-        
+        print(f"✅ Retrieved {len(session_list)} unique sessions")
         return jsonify({
             'sessions': session_list
         })
         
     except Exception as e:
+        print(f"❌ Error occurred in get_sessions(): {str(e)}")
+        print(f"❌ Error type: {type(e).__name__}")
+        import traceback
+        print(f"❌ Traceback: {traceback.format_exc()}")
         return jsonify({'error': str(e)}), 500
-

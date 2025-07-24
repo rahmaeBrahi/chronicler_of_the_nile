@@ -1,8 +1,5 @@
-# Deployment Instructions for Chronicler of the Nile
 
-## Free Deployment Options (No Credit Card Required)
-
-### Option 1: Render.com (Recommended)
+### Option 1: Render.com 
 
 1. **Create a GitHub Repository**
    - Upload your project to GitHub
@@ -23,7 +20,7 @@
    - Your app will be available at: `https://your-app-name.onrender.com`
    - Set WhatsApp webhook to: `https://your-app-name.onrender.com/whatsapp/webhook`
 
-### Option 2: Vercel (Alternative)
+### Option 2: Vercel 
 
 1. **Install Vercel CLI**
    ```bash
@@ -54,21 +51,7 @@
    vercel --prod
    ```
 
-### Option 3: PythonAnywhere (Free Tier)
 
-1. **Sign up at pythonanywhere.com**
-2. **Upload your files**
-3. **Create a web app**
-4. **Configure WSGI file**
-
-### Option 4: Glitch.com
-
-1. **Go to glitch.com**
-2. **Import from GitHub**
-3. **Add environment variables**
-4. **Your app will be live automatically**
-
-## WhatsApp Business API Configuration
 
 ### Step 1: Facebook Developer Account
 1. Go to [developers.facebook.com](https://developers.facebook.com)
@@ -106,41 +89,4 @@
 
 3. **Send Test Message**
    Send a WhatsApp message to your business number and check for responses.
-
-## Troubleshooting
-
-### Common Issues:
-
-1. **Webhook Verification Failed**
-   - Check your verify token matches
-   - Ensure your app is accessible publicly
-
-2. **No Response to Messages**
-   - Check your access token is valid
-   - Verify phone number ID is correct
-   - Check app logs for errors
-
-3. **Database Errors**
-   - Ensure `init_db.py` runs during deployment
-   - Check database permissions
-
-### Logs and Debugging:
-
-- **Render**: Check logs in dashboard
-- **Vercel**: Use `vercel logs`
-- **Local**: Run `python src/main.py` and check console
-
-## Security Notes
-
-- Keep your tokens secure
-- Use environment variables, never hardcode credentials
-- Enable webhook signature verification in production
-- Consider using HTTPS for all communications
-
-## Scaling Considerations
-
-- Free tiers have limitations (requests/month, uptime)
-- For production use, consider paid plans
-- Use PostgreSQL instead of SQLite for better performance
-- Implement proper logging and monitoring
 

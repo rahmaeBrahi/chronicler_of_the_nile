@@ -314,7 +314,7 @@ chronicler_of_the_nile/
 │   ├── islamic_ottoman.json
 │   └── modern_egypt.json
 ├── README.md
-└── DEPLOYMENT_GUIDE.md
+└── GHANGELOG.md
 ```
 
 ### Adding New Historical Periods
@@ -384,12 +384,7 @@ For questions, issues, or contributions:
 - Contact the development team
 - Check the documentation and deployment guide
 
-## Version History
 
-- **v1.0.0**: Initial release with full historical coverage
-- **v1.1.0**: Added multilingual support
-- **v1.2.0**: Enhanced conversation memory
-- **v1.3.0**: Improved knowledge base structure
 
 ---
 

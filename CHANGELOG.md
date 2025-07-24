@@ -67,7 +67,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Known Issues
 - None reported in initial release
 
----
 
-For more information about releases and updates, visit the project repository.
 

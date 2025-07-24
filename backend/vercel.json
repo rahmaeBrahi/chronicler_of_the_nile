@@ -17,8 +17,7 @@
     }
   ],
   "env": {
-    "PYTHONPATH": "/var/task"
+    "PYTHONPATH": "/var/task",
+    "PG_CONFIG": "/usr/bin/true" 
   }
 }
-
-

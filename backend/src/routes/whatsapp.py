@@ -11,10 +11,10 @@ import uuid
 whatsapp_bp = Blueprint('whatsapp', __name__)
 
 # WhatsApp Cloud API configuration
-WHATSAPP_TOKEN = os.getenv('WHATSAPP_ACCESS_TOKEN', 'YOUR_WHATSAPP_ACCESS_TOKEN')  # Added default value
-WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID', 'YOUR_WHATSAPP_PHONE_NUMBER_ID')  # Added default value
-WHATSAPP_VERIFY_TOKEN = os.getenv('WHATSAPP_VERIFY_TOKEN', 'YOUR_WHATSAPP_VERIFY_TOKEN')  # Added default value
-WHATSAPP_APP_SECRET = os.getenv('WHATSAPP_APP_SECRET', 'YOUR_WHATSAPP_APP_SECRET')  # Added default value
+WHATSAPP_TOKEN = os.getenv('WHATSAPP_ACCESS_TOKEN')
+WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID') 
+WHATSAPP_VERIFY_TOKEN = os.getenv('WHATSAPP_VERIFY_TOKEN') 
+WHATSAPP_APP_SECRET = os.getenv('WHATSAPP_APP_SECRET') 
 
 # Store conversation histories for WhatsApp sessions
 whatsapp_conversations = {}

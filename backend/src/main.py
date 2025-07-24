@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import sys
-# DON\'T CHANGE THIS !!!
+# DON\"T CHANGE THIS !!!
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from flask import Flask, send_from_directory
@@ -15,6 +15,9 @@ from src.routes.whatsapp import whatsapp_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
+# Set instance path to a writable temporary directory for Vercel
+app.instance_path = '/tmp/instance' # Added this line
 
 # Enable CORS for all routes
 CORS(app)
@@ -49,4 +52,7 @@ def serve(path):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
+
+
 

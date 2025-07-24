@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import sys
-# DON'T CHANGE THIS !!!
+# DON\'T CHANGE THIS !!!
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from flask import Flask, send_from_directory
@@ -24,7 +24,7 @@ app.register_blueprint(knowledge_bp, url_prefix='/api')
 app.register_blueprint(whatsapp_bp, url_prefix='/api/whatsapp')
 
 # Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL') # Use DATABASE_URL from environment variables
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 with app.app_context():

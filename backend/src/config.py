@@ -7,7 +7,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # CORS settings
-    CORS_ORIGINS = os.environ.get('CORS_ORIGINS', '*')  # Default to '*' if not set
+    CORS_ORIGINS = os.environ.get('CORS_ORIGINS')  
     
     # AI Model settings
     AI_MODEL_NAME = 'gemini-pro'

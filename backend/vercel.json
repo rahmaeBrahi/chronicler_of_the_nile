@@ -3,11 +3,7 @@
   "builds": [
     {
       "src": "src/main.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb",
-        "runtime": "python3.9"
-      }
+      "use": "@vercel/python"
     }
   ],
   "routes": [
@@ -17,7 +13,6 @@
     }
   ],
   "env": {
-    "PYTHONPATH": "/var/task",
-    "PG_CONFIG": "/usr/bin/true" 
+    "PYTHONPATH": "."
   }
 }

@@ -1,8 +1,9 @@
 # Chronicler of the Nile - WhatsApp Chatbot
 
 A sophisticated AI chatbot that embodies the vast knowledge of Egyptian history, integrated with WhatsApp Cloud API and enhanced with Wikipedia search functionality.
+## first you can test my chatbot by send a message to this phone number:01031279115
 
-## Features
+### Features
 
 - **WhatsApp Integration**: Responds to messages sent to  WhatsApp Business number
 - **Wikipedia Enhancement**: Uses Wikipedia search chains to provide accurate historical information
@@ -223,9 +224,22 @@ Once deployed and configured, users can:
 **Arabic:**
 - User: "أخبرني عن الأهرامات"
 - Bot: يقدم معلومات مفصلة عن الأهرامات مع السياق من ويكيبيديا
+## Example WhatsApp Chat
+
+![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\photo1.jpg)
 
 
+![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p2.jpg)
 
+
+![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p3.jpg)
+
+![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p4.jpg)
+
+![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p6.jpg)
+
+![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p7.jpg)
+![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p8.jpg)
 ---
 
 *The Chronicler of the Nile - Bringing Egyptian history to life through AI*

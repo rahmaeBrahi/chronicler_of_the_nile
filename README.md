@@ -226,20 +226,22 @@ Once deployed and configured, users can:
 - Bot: يقدم معلومات مفصلة عن الأهرامات مع السياق من ويكيبيديا
 ## Example WhatsApp Chat
 
-![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\photo1.jpg)
+![WhatsApp Chat Example](assets/photo1.jpg)
 
 
-![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p2.jpg)
+![WhatsApp Chat Example](assets/p2.jpg)
 
 
-![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p3.jpg)
+![WhatsApp Chat Example](assets/p3.jpg)
 
-![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p4.jpg)
+![WhatsApp Chat Example](assets/p4.jpg)
 
-![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p6.jpg)
+![WhatsApp Chat Example](assets/p6.jpg)
 
-![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p7.jpg)
-![WhatsApp Chat Example](C:\Users\Rahma\Downloads\chronicler_of_the_nile_full_project\chronicler_of_the_nile_modified_v2\assets\p8.jpg)
+![WhatsApp Chat Example](assets/p7.jpg)
+
+![WhatsApp Chat Example](assets/p8.jpg)
+
 ---
 
 *The Chronicler of the Nile - Bringing Egyptian history to life through AI*

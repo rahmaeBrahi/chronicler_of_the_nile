@@ -8,7 +8,6 @@ import { Separator } from '@/components/ui/separator.jsx'
 import { Send, MessageCircle, History, BookOpen, Loader2 } from 'lucide-react'
 import './App.css'
 
-// Define the backend API URL
 const API_BASE_URL = 'http://localhost:5000'; // This should point to your Flask backend
 
 function App() {

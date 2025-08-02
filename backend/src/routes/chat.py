@@ -10,7 +10,7 @@ import json
 chat_bp = Blueprint("chat", __name__)
 
 # Configure Gemini API
-print(f"🔑 GEMINI_API_KEY from environment variables: {os.getenv("GEMINI_API_KEY")[:10] if os.getenv("GEMINI_API_KEY") else "Not found"}...")
+print(f" GEMINI_API_KEY from environment variables: {os.getenv("GEMINI_API_KEY")[:10] if os.getenv("GEMINI_API_KEY") else "Not found"}...")
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Store conversation histories in memory (in production, use Redis or database)
@@ -31,10 +31,10 @@ def detect_language(text):
 def get_chronicler_response(user_message, conversation, language):
     """
     Generate a response from the Chronicler using Gemini AI with Wikipedia enhancement.\n    \n    Args:\n        user_message (str): User's message\n        conversation (ConversationHistory): Conversation history\n        language (str): Detected language\n        \n    Returns:\n        str: AI response\n    """
-    print(f"🤖 Generating Chronicler response for: {user_message[:50]}...")
+    print(f" Generating Chronicler response for: {user_message[:50]}...")
     
     # Get Wikipedia contextual information
-    print("🔍 Searching Wikipedia for additional context...")
+    print(" Searching Wikipedia for additional context...")
     wikipedia_context = wikipedia_searcher.get_contextual_information(user_message, language)
     
     # Prepare context for AI
@@ -49,7 +49,7 @@ def get_chronicler_response(user_message, conversation, language):
     # Add Wikipedia context if available
     if wikipedia_context:
         full_prompt += f"\n\n{wikipedia_context}"
-        print("✅ Wikipedia context added to prompt")
+        print(" Wikipedia context added to prompt")
     
     if context:
         full_prompt += "\n\nConversation History:\n"
@@ -59,10 +59,10 @@ def get_chronicler_response(user_message, conversation, language):
     
     full_prompt += f"\nUser: {user_message}\nChronicler:"
     
-    print(f"📝 Full prompt length: {len(full_prompt)} characters")
+    print(f" Full prompt length: {len(full_prompt)} characters")
     
     # Generate response
-    print("🎯 Generating AI response...")
+    print(" Generating AI response...")
     response = model.generate_content(
         full_prompt,
         generation_config=genai.types.GenerationConfig(
@@ -74,7 +74,7 @@ def get_chronicler_response(user_message, conversation, language):
     )
     
     ai_response = response.text
-    print(f"✅ AI response generated: {len(ai_response)} characters")
+    print(f" AI response generated: {len(ai_response)} characters")
     
     return ai_response
 
@@ -143,10 +143,10 @@ def chat():
         })
         
     except Exception as e:
-        print(f"❌ Error occurred in chat(): {str(e)}")
-        print(f"❌ Error type: {type(e).__name__}")
+        print(f" Error occurred in chat(): {str(e)}")
+        print(f" Error type: {type(e).__name__}")
         import traceback
-        print(f"❌ Traceback: {traceback.format_exc()}")
+        print(f" Traceback: {traceback.format_exc()}")
         return jsonify({'error': str(e)}), 500
 
 @chat_bp.route('/history/<session_id>', methods=['GET'])
@@ -163,17 +163,17 @@ def get_history(session_id):
                 'timestamp': conv.timestamp.isoformat(),
                 'language': conv.language
             })
-        print(f"✅ Retrieved {len(history)} history records for session {session_id}")
+        print(f" Retrieved {len(history)} history records for session {session_id}")
         return jsonify({
             'session_id': session_id,
             'history': history
         })
         
     except Exception as e:
-        print(f"❌ Error occurred in get_history(): {str(e)}")
-        print(f"❌ Error type: {type(e).__name__}")
+        print(f" Error occurred in get_history(): {str(e)}")
+        print(f" Error type: {type(e).__name__}")
         import traceback
-        print(f"❌ Traceback: {traceback.format_exc()}")
+        print(f" Traceback: {traceback.format_exc()}")
         return jsonify({'error': str(e)}), 500
 
 @chat_bp.route('/sessions', methods=['GET'])
@@ -183,14 +183,14 @@ def get_sessions():
         # Get unique session IDs from database
         sessions = db.session.query(Conversation.session_id).distinct().all()
         session_list = [session[0] for session in sessions]
-        print(f"✅ Retrieved {len(session_list)} unique sessions")
+        print(f" Retrieved {len(session_list)} unique sessions")
         return jsonify({
             'sessions': session_list
         })
         
     except Exception as e:
-        print(f"❌ Error occurred in get_sessions(): {str(e)}")
-        print(f"❌ Error type: {type(e).__name__}")
+        print(f" Error occurred in get_sessions(): {str(e)}")
+        print(f" Error type: {type(e).__name__}")
         import traceback
-        print(f"❌ Traceback: {traceback.format_exc()}")
+        print(f" Traceback: {traceback.format_exc()}")
         return jsonify({'error': str(e)}), 500

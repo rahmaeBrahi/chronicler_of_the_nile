@@ -47,7 +47,7 @@ class ConversationHistory:
         if not self.history:
             return []
         
-        # Simple token estimation (rough approximation)
+        # Simple token estimation 
         total_tokens = 0
         context = []
         

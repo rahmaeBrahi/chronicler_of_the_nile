@@ -1,65 +1,85 @@
-# The Chronicler of the Nile: A Comprehensive Egyptian History AI
+# Chronicler of the Nile - WhatsApp Chatbot
 
-## Overview
+A sophisticated AI chatbot that embodies the vast knowledge of Egyptian history, integrated with WhatsApp Cloud API and enhanced with Wikipedia search functionality.
 
-The Chronicler of the Nile is a sophisticated conversational AI system designed to engage users in detailed discussions across the entire span of Egyptian history, from the Pharaonic era through the Roman, Islamic, Ottoman, and modern periods. This project demonstrates advanced prompt engineering, conversational memory management, robust handling of diverse user queries, WhatsApp integration, and dynamic Wikipedia content enhancement while providing accurate historical information, explanations of complex events, and contextual insights.
+## Features
 
-## Project Description
+- **WhatsApp Integration**: Responds to messages sent to  WhatsApp Business number
+- **Wikipedia Enhancement**: Uses Wikipedia search chains to provide accurate historical information
+- **Multi-language Support**: Supports your  language
+- **Egyptian History Expertise**: Specialized knowledge spanning all periods of Egyptian history
+- **Conversation Memory**: Maintains context across conversations
 
-Egypt's history spans over 5,000 years, featuring pharaohs, conquerors, caliphs, sultans, and revolutionaries. The Chronicler of the Nile brings this vast narrative to life as a digital entity that users can consult for information, explanations, and contextual understanding of any period in Egyptian history. Now enhanced with WhatsApp integration and real-time Wikipedia content retrieval.
 
-### Key Features
 
-- **Multilingual Support**: Responds in the same language as the user's query (Arabic and English)
-- **Comprehensive Historical Coverage**: Spans from Ancient Egypt to modern times
-- **Conversational Memory**: Maintains context throughout sessions
-- **Advanced AI Integration**: Powered by Google's Gemini API
-- **WhatsApp Integration**: Direct messaging through WhatsApp Business API
-- **Wikipedia Enhancement**: Real-time retrieval of relevant Wikipedia content
-- **Responsive Web Interface**: Modern React frontend with mobile support
-- **RESTful API**: Flask backend with well-structured endpoints
-- **Historical Knowledge Base**: Structured JSON data covering all major periods
+###  Environment Variables
 
-## New Features
+Update the `.env` file with your credentials:
 
-### WhatsApp Integration
-- **Direct Messaging**: Users can interact with the Chronicler directly through WhatsApp
-- **Webhook Support**: Real-time message processing via WhatsApp Business API
-- **Multi-platform Conversations**: Seamless experience across web and WhatsApp
-- **Phone Number Management**: Individual conversation histories per WhatsApp number
+```
+WHATSAPP_ACCESS_TOKEN=your_access_token
+WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
+WHATSAPP_VERIFY_TOKEN=your_verify_token
+WHATSAPP_APP_SECRET=your_app_secret
+GEMINI_API_KEY=your_gemini_api_key
+```
 
-### Wikipedia Enhancement
-- **Dynamic Content Retrieval**: Real-time Wikipedia searches for enhanced responses
-- **Egyptian History Filtering**: Intelligent filtering for Egypt-related content
-- **Contextual Integration**: Wikipedia content seamlessly integrated into AI responses
-- **Multi-language Support**: Wikipedia searches in both English and Arabic contexts
+### Conversation Management
 
-## Architecture
+- **Max Conversation Tokens**: 4000 (context window management)
+- **Max History Length**: 50 messages per session
+- **Session Timeout**: No automatic timeout (persistent until cleared)
 
-The system follows a modern full-stack architecture:
+## Development
 
-### Backend (Flask)
-- **Framework**: Flask with SQLAlchemy ORM
-- **Database**: SQLite for conversation storage with WhatsApp support
-- **AI Integration**: Google Gemini API for natural language processing
-- **WhatsApp API**: Integration with WhatsApp Business Cloud API
-- **Wikipedia API**: Dynamic content retrieval and enhancement
-- **API Design**: RESTful endpoints for chat, history, knowledge access, and WhatsApp
-- **CORS Support**: Enabled for frontend-backend communication
+### Project Structure
+```
+chronicler_of_the_nile/
+├── backend/
+│   ├── src/
+│   │   ├── models/
+│   │   │   └── conversation.py
+            └── user.py
+│   │   ├── routes/
+│   │   │   ├── chat.py
+│   │   │   └── knowledge.py
+            └── user.py 
+            └── whatsapp.py
+        
+│   │   ├── static/
+│   │   │   └── index.html
+        
+│   │   ├── utils/
+│   │   │   └── wikipedia_search.py
+        ├── __init__.py
+│   │   ├── config.py
+│   │   └── main.py
+│   ├── requirements.txt
+│   └── venv/
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── ui/
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── main.jsx
+│   ├── package.json
+│   └── node_modules/
+├── knowledge_base/
+│   ├── ancient_egypt.json
+│   ├── graeco_roman.json
+│   ├── islamic_ottoman.json
+│   └── modern_egypt.json
+├── README.md
+└── GHANGELOG.md
+```
 
-### Frontend (React)
-- **Framework**: React with modern hooks
-- **UI Library**: Shadcn/ui components with Tailwind CSS
-- **State Management**: React hooks for local state
-- **Responsive Design**: Mobile-first approach
-- **Real-time Chat**: Interactive conversation interface
+### Adding New Historical Periods
 
-### Knowledge Base
-- **Format**: Structured JSON files enhanced with Wikipedia integration
-- **Coverage**: Four major historical periods plus real-time Wikipedia content
-- **Content**: Detailed information on rulers, events, culture, and society
-- **Accessibility**: API endpoints for programmatic access
-- **Dynamic Enhancement**: Real-time Wikipedia content integration
+1.  new JSON file in `knowledge_base/`
+2. Follow the existing structure with period, timeframe, overview, etc.
+3. Update the knowledge route to include the new period
+4. Test the API endpoints
 
 ## Historical Periods Covered
 
@@ -93,300 +113,119 @@ The system follows a modern full-stack architecture:
 - Nasser, Sadat, and Mubarak eras
 - Arab Spring and contemporary Egypt
 
-## Installation and Setup
+### 3. Local Development : if you don't want publish this bot 
 
-### Prerequisites
-- Python 3.11+
-- Node.js 20+
-- pnpm package manager
-- Google Gemini API key
-
-### Backend Setup
-
-1. Navigate to the backend directory:
 ```bash
-cd backend
-```
-
-2. Create and activate virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install dependencies:
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-4. Set environment variables:
-```bash
-export GEMINI_API_KEY="your-gemini-api-key-here"
-export SECRET_KEY="your-secret-key-here"
-```
+# Initialize database
+python init_db.py
 
-5. Run the Flask application:
-```bash
+# Run the application
 python src/main.py
 ```
 
-The backend will be available at `http://localhost:5000`
+### 4. Deployment Options
 
-### Frontend Setup
+###  Vercel 
 
-1. Navigate to the frontend directory:
+1. **Install Vercel CLI**
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Create vercel.json**
+   ```json
+   {
+     "version": 2,
+     "builds": [
+       {
+         "src": "src/main.py",
+         "use": "@vercel/python"
+       }
+     ],
+     "routes": [
+       {
+         "src": "/(.*)",
+         "dest": "src/main.py"
+       }
+     ]
+   }
+   ```
+
+3. **Deploy**
+   ```bash
+   vercel --prod
+   ```
+
+
+
+### Step 1: Facebook Developer Account
+1. Go to [developers.facebook.com](https://developers.facebook.com)
+2. Create a new app
+3. Add "WhatsApp Business API" product
+
+### Step 2: Get Credentials
+- **Access Token**: From WhatsApp → API Setup
+- **Phone Number ID**: From WhatsApp → API Setup  
+- **Verify Token**: Create your own 
+- **App Secret**: From App Settings → Basic
+
+### Step 3: Configure Webhook
+1. In WhatsApp → Configuration
+2. Set Webhook URL: `https://your-deployed-app.com/whatsapp/webhook`
+3. Set Verify Token
+4. Subscribe to `messages` events
+
+### Step 4: Add Phone Number
+1. Go to WhatsApp → Phone Numbers
+2. Add your phone number
+3. Verify the number
+
+## Testing Your Deployment
+
+1. **Check Status**
+   ```bash
+   curl https://your-app.com/whatsapp/status
+   ```
+
+2. **Test Webhook**
+   ```bash
+   curl -X GET "https://your-app.com/whatsapp/webhook?hub.mode=subscribe&hub.challenge=test&hub.verify_token="set_yourverify"
+   ```
+
+3. **Send Test Message**
+   Send a WhatsApp message to your business number and check for responses.
+
+
+#### Option B: Docker
 ```bash
-cd frontend
+docker build -t chronicler-nile .
+docker run -p 5000:5000 chronicler-nile
 ```
 
-2. Install dependencies:
-```bash
-pnpm install
-```
 
-3. Start the development server:
-```bash
-pnpm run dev
-```
+## Usage
 
-The frontend will be available at `http://localhost:5173`
+Once deployed and configured, users can:
 
-## API Documentation
+1. Send messages to your WhatsApp Business number
+2. Ask questions about Egyptian history in English or Arabic
+3. Receive detailed, contextual responses enhanced with Wikipedia information
 
-### Chat Endpoints
+## Example Conversations
 
-#### POST /api/chat
-Send a message to the Chronicler and receive a response.
+**English:**
+- User: "Tell me about Cleopatra"
+- Bot: Provides detailed information about Cleopatra with Wikipedia context
 
-**Request Body:**
-```json
-{
-  "message": "Tell me about the pyramids of Giza",
-  "session_id": "optional-session-id"
-}
-```
-
-**Response:**
-```json
-{
-  "response": "The pyramids of Giza...",
-  "session_id": "session_12345",
-  "language": "en",
-  "timestamp": "2024-01-01T12:00:00Z"
-}
-```
-
-#### GET /api/history/{session_id}
-Retrieve conversation history for a specific session.
-
-**Response:**
-```json
-{
-  "session_id": "session_12345",
-  "history": [
-    {
-      "user_message": "Tell me about the pyramids",
-      "ai_response": "The pyramids of Giza...",
-      "timestamp": "2024-01-01T12:00:00Z",
-      "language": "en"
-    }
-  ]
-}
-```
-
-#### GET /api/sessions
-Get list of all conversation sessions.
-
-**Response:**
-```json
-{
-  "sessions": ["session_12345", "session_67890"]
-}
-```
-
-### Knowledge Base Endpoints
-
-#### GET /api/knowledge
-Retrieve all historical knowledge.
-
-**Response:**
-```json
-{
-  "ancient_egypt": { ... },
-  "graeco_roman": { ... },
-  "islamic_ottoman": { ... },
-  "modern_egypt": { ... }
-}
-```
-
-#### GET /api/knowledge/{period}
-Get knowledge for a specific historical period.
-
-**Response:**
-```json
-{
-  "period": "ancient_egypt",
-  "data": { ... }
-}
-```
-
-#### GET /api/knowledge/periods
-Get list of available historical periods.
-
-**Response:**
-```json
-{
-  "periods": ["ancient_egypt", "graeco_roman", "islamic_ottoman", "modern_egypt"],
-  "count": 4
-}
-```
-
-## Usage Examples
-
-### Basic Conversation
-```
-User: "Tell me about Cleopatra"
-Chronicler: "Cleopatra VII Philopator (69-30 BCE) was the last active pharaoh of Ptolemaic Egypt..."
-```
-
-### Arabic Language Support
-```
-User: "أخبرني عن الأهرامات"
-Chronicler: "أهرامات الجيزة هي من أعظم الإنجازات المعمارية في التاريخ القديم..."
-```
-
-### Cross-Period Context
-```
-User: "How did Islamic conquest change Egypt?"
-Chronicler: "The Arab conquest of Egypt in 641 CE marked a fundamental transformation from the Graeco-Roman period..."
-```
-
-## Configuration
-
-### Environment Variables
-
-- `GEMINI_API_KEY`: Your Google Gemini API key (required)
-- `SECRET_KEY`: Flask secret key for session management
-- `DATABASE_URL`: Database connection string (defaults to SQLite)
-
-### AI Model Parameters
-
-The system uses the following Gemini API parameters:
-- **Temperature**: 0.7 (balanced creativity and accuracy)
-- **Top P**: 0.8 (nucleus sampling)
-- **Top K**: 40 (token selection)
-- **Max Output Tokens**: 1024 (response length limit)
-
-### Conversation Management
-
-- **Max Conversation Tokens**: 4000 (context window management)
-- **Max History Length**: 50 messages per session
-- **Session Timeout**: No automatic timeout (persistent until cleared)
-
-## Development
-
-### Project Structure
-```
-chronicler_of_the_nile/
-├── backend/
-│   ├── src/
-│   │   ├── models/
-│   │   │   └── conversation.py
-│   │   ├── routes/
-│   │   │   ├── chat.py
-│   │   │   └── knowledge.py
-│   │   ├── config.py
-│   │   └── main.py
-│   ├── requirements.txt
-│   └── venv/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   └── ui/
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   └── main.jsx
-│   ├── package.json
-│   └── node_modules/
-├── knowledge_base/
-│   ├── ancient_egypt.json
-│   ├── graeco_roman.json
-│   ├── islamic_ottoman.json
-│   └── modern_egypt.json
-├── README.md
-└── GHANGELOG.md
-```
-
-### Adding New Historical Periods
-
-1. Create a new JSON file in `knowledge_base/`
-2. Follow the existing structure with period, timeframe, overview, etc.
-3. Update the knowledge route to include the new period
-4. Test the API endpoints
-
-### Extending AI Capabilities
-
-1. Modify the prompt in `src/routes/chat.py`
-2. Adjust Gemini API parameters in `src/config.py`
-3. Update conversation memory management as needed
-4. Test with various query types
-
-## Testing
-
-### Backend Testing
-```bash
-cd backend
-source venv/bin/activate
-python -m pytest tests/
-```
-
-### Frontend Testing
-```bash
-cd frontend
-pnpm test
-```
-
-### Integration Testing
-1. Start both backend and frontend
-2. Test conversation flow
-3. Verify language detection
-4. Check knowledge base access
-5. Test session management
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
-
-### Code Style
-- **Backend**: Follow PEP 8 for Python code
-- **Frontend**: Use ESLint and Prettier for JavaScript/React
-- **Documentation**: Update README and API docs for changes
-
-## License
-
-This project is licensed under the MIT License. See LICENSE file for details.
-
-## Acknowledgments
-
-- Google Gemini API for natural language processing
-- React and Flask communities for excellent frameworks
-- Historical sources and academic research on Egyptian history
-- Shadcn/ui for beautiful React components
-
-## Support
-
-For questions, issues, or contributions:
-- Create an issue on GitHub
-- Contact the development team
-- Check the documentation and deployment guide
+**Arabic:**
+- User: "أخبرني عن الأهرامات"
+- Bot: يقدم معلومات مفصلة عن الأهرامات مع السياق من ويكيبيديا
 
 
 
 ---
 
 *The Chronicler of the Nile - Bringing Egyptian history to life through AI*
-

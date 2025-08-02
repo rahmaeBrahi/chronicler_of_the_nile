@@ -11,11 +11,10 @@ import uuid
 whatsapp_bp = Blueprint("whatsapp", __name__)
 
 # WhatsApp Cloud API configuration
-WHATSAPP_TOKEN = os.getenv("WHATSAPP_ACCESS_TOKEN", "YOUR_WHATSAPP_ACCESS_TOKEN")  # Added default value
-WHATSAPP_PHONE_NUMBER_ID = os.getenv("WHATSAPP_PHONE_NUMBER_ID", "YOUR_WHATSAPP_PHONE_NUMBER_ID")  # Added default value
-WHATSAPP_VERIFY_TOKEN = os.getenv("WHATSAPP_VERIFY_TOKEN", "YOUR_WHATSAPP_VERIFY_TOKEN")  # Added default value
-WHATSAPP_APP_SECRET = os.getenv("WHATSAPP_APP_SECRET", "YOUR_WHATSAPP_APP_SECRET")  # Added default value
-
+WHATSAPP_TOKEN = os.getenv("WHATSAPP_ACCESS_TOKEN")  
+WHATSAPP_PHONE_NUMBER_ID = os.getenv("WHATSAPP_PHONE_NUMBER_ID")  
+WHATSAPP_VERIFY_TOKEN = os.getenv("WHATSAPP_VERIFY_TOKEN") 
+WHATSAPP_APP_SECRET = os.getenv("WHATSAPP_APP_SECRET")  
 # Store conversation histories for WhatsApp sessions
 whatsapp_conversations = {}
 
@@ -23,13 +22,13 @@ def verify_webhook_signature(payload, signature):
     """Verify the webhook signature from WhatsApp"""
     # For local testing without a domain, we will bypass signature verification.
     # In a production environment, this MUST be enabled and properly configured.
-    print("⚠️ Webhook signature verification bypassed for local testing.")
+    print(" Webhook signature verification bypassed for local testing.")
     return True
 
 def send_whatsapp_message(phone_number, message):
     """Send a message via WhatsApp Cloud API"""
     if not WHATSAPP_TOKEN or not WHATSAPP_PHONE_NUMBER_ID or WHATSAPP_TOKEN == "YOUR_WHATSAPP_ACCESS_TOKEN" or WHATSAPP_PHONE_NUMBER_ID == "YOUR_WHATSAPP_PHONE_NUMBER_ID":
-        print("❌ WhatsApp credentials not configured or are default placeholders. Please set WHATSAPP_ACCESS_TOKEN and WHATSAPP_PHONE_NUMBER_ID.")
+        print(" WhatsApp credentials not configured or are default placeholders. Please set WHATSAPP_ACCESS_TOKEN and WHATSAPP_PHONE_NUMBER_ID.")
         return False
     
     url = f"https://graph.facebook.com/v18.0/{WHATSAPP_PHONE_NUMBER_ID}/messages"
@@ -51,16 +50,16 @@ def send_whatsapp_message(phone_number, message):
     try:
         response = requests.post(url, json=data, headers=headers )
         response.raise_for_status()
-        print(f"✅ Message sent to {phone_number}")
+        print(f" Message sent to {phone_number}")
         return True
     except requests.exceptions.RequestException as e:
-        print(f"❌ Failed to send WhatsApp message: {e}")
+        print(f" Failed to send WhatsApp message: {e}")
         return False
 
 @whatsapp_bp.route("/webhook", methods=["GET"])
 def verify_webhook():
     """Verify webhook endpoint for WhatsApp"""
-    print("🔍 WhatsApp webhook verification request received")
+    print(" WhatsApp webhook verification request received")
     
     mode = request.args.get("hub.mode")
     token = request.args.get("hub.verify_token")
@@ -68,29 +67,27 @@ def verify_webhook():
     
     print(f"Mode: {mode}, Token: {token}, Challenge: {challenge}")
     
-    # For local testing without a domain, we will bypass webhook verification.
-    # In a production environment, this MUST be enabled and properly configured.
     if mode == "subscribe" and token == WHATSAPP_VERIFY_TOKEN:
-        print("✅ Webhook verified successfully.")
+        print(" Webhook verified successfully.")
         return challenge, 200
     else:
-        print("❌ Webhook verification failed. Invalid mode or token.")
+        print(" Webhook verification failed. Invalid mode or token.")
         return "Verification failed", 403
 
 @whatsapp_bp.route("/webhook", methods=["POST"])
 def handle_webhook():
     """Handle incoming WhatsApp messages"""
-    print("📨 WhatsApp webhook message received")
+    print(" WhatsApp webhook message received")
     
     try:
         # Verify signature (bypassed for local testing)
         signature = request.headers.get("X-Hub-Signature-256")
         if signature and not verify_webhook_signature(request.data, signature):
-            print("❌ Invalid webhook signature")
+            print(" Invalid webhook signature")
             return "Invalid signature", 403
         
         data = request.get_json()
-        print(f"📋 Webhook data: {data}")
+        print(f" Webhook data: {data}")
         
         # Process webhook data
         if data.get("object") == "whatsapp_business_account":
@@ -102,22 +99,21 @@ def handle_webhook():
         return jsonify({"status": "success"}), 200
         
     except Exception as e:
-        print(f"❌ Error processing webhook: {str(e)}")
+        print(f" Error processing webhook: {str(e)}")
         import traceback
-        print(f"❌ Traceback: {traceback.format_exc()}")
+        print(f"Traceback: {traceback.format_exc()}")
         return jsonify({"error": str(e)}), 500
 
 def process_message(message_data):
     """Process incoming WhatsApp message"""
-    print(f"🔄 Processing message data: {message_data}")
+    print(f" Processing message data: {message_data}")
     
     try:
         messages = message_data.get("messages", [])
         
         for message in messages:
-            # Skip status messages
             if message.get("type") != "text":
-                print(f"⏭️ Skipping non-text message: {message.get("type")}")
+                print(f" Skipping non-text message: {message.get("type")}")
                 continue
             
             # Extract message details
@@ -126,10 +122,10 @@ def process_message(message_data):
             text_body = message.get("text", {}).get("body", "")
             timestamp = message.get("timestamp")
             
-            print(f"📱 Message from {from_number}: {text_body}")
+            print(f" Message from {from_number}: {text_body}")
             
             if not text_body:
-                print("⚠️ Empty message body, skipping")
+                print(" Empty message body, skipping")
                 continue
             
             # Generate session ID for this phone number
@@ -143,7 +139,7 @@ def process_message(message_data):
             
             # Detect language
             language = detect_language(text_body)
-            print(f"🌐 Detected language: {language}")
+            print(f" Detected language: {language}")
             
             # Add user message to history
             conversation.add_message("user", text_body)
@@ -156,9 +152,9 @@ def process_message(message_data):
             
             # Send response back via WhatsApp
             if send_whatsapp_message(from_number, ai_response):
-                print(f"✅ Response sent to {from_number}")
+                print(f" Response sent to {from_number}")
             else:
-                print(f"❌ Failed to send response to {from_number}")
+                print(f" Failed to send response to {from_number}")
             
             # Save to database
             try:
@@ -172,15 +168,15 @@ def process_message(message_data):
                 )
                 db.session.add(conv_record)
                 db.session.commit()
-                print("💾 Conversation saved to database")
+                print(" Conversation saved to database")
             except Exception as db_error:
-                print(f"❌ Database error: {db_error}")
+                print(f" Database error: {db_error}")
                 db.session.rollback()
     
     except Exception as e:
-        print(f"❌ Error processing message: {str(e)}")
+        print(f" Error processing message: {str(e)}")
         import traceback
-        print(f"❌ Traceback: {traceback.format_exc()}")
+        print(f" Traceback: {traceback.format_exc()}")
 
 @whatsapp_bp.route("/send", methods=["POST"])
 def send_message():
@@ -201,7 +197,7 @@ def send_message():
             return jsonify({"error": "Failed to send message"}), 500
             
     except Exception as e:
-        print(f"❌ Error in send_message: {str(e)}")
+        print(f" Error in send_message: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 @whatsapp_bp.route("/status", methods=["GET"])
